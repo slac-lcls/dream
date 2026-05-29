@@ -522,10 +522,10 @@ Format: `detector:variable`
 | `bld:gmd` | X-ray pulse energy |
 | `bld:xgmd` | X-ray pulse energy (after attenuator) |
 | **Timing Codes** | |
-| `timing:280` | Timing code 280 |
-| `timing:281` | Timing code 281 |
-| `timing:282` | Timing code 282 |
-| `timing:dest` | Beam destination |
+| `timing:280` | Timing code 280, optical laser timed (duck) |
+| `timing:281` | Timing code 281, optical laser mistimed (goose) |
+| `timing:282` | Timing code 282, optical laser on |
+| `timing:dest` | Beam destination, 4 is soft X-ray |
 | **Scan** | |
 | `scan:var1` | First scan variable |
 | `scan:var2` | Second scan variable |
