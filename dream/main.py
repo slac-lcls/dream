@@ -22,12 +22,13 @@ elif numworkers>120 and mode == 'offline':
 else:
     os.environ['PS_SRV_NODES']='1'
     os.environ['PS_EB_NODES']='1' 
-    
+
 config_dir = os.getenv("CONFIGDIR")
 instrument = read_config(config_dir+'instrument.yaml')['instrument']
-config = read_config(config_dir+instrument+'/'+mode+'.yaml') 
+config_dir_run = os.getenv("CONFIGDIR_RUN", config_dir+instrument+'/')
+config = read_config(config_dir_run+'offline.yaml') 
+config_det = read_config(config_dir_run+'det.yaml')      
 
-config_det = read_config(config_dir+instrument+'/det.yaml')
 detectors, config, requested_vars_by_detector = check_detectors(config, config_det)
 
 if rank==0: 

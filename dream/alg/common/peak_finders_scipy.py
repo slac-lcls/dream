@@ -12,8 +12,8 @@ class hsd_peak_finder():
         if params is None:
             config_dir = os.getenv("CONFIGDIR")
             instrument = read_config(config_dir+'instrument.yaml')['instrument']
-            config_dir = config_dir + instrument + '/'
-            params = read_config(config_dir + 'alg.yaml')[self.det_id]['det']
+            config_dir_run = os.getenv("CONFIGDIR_RUN", config_dir + instrument + '/')
+            params = read_config(config_dir_run + 'alg.yaml')[self.det_id]['det']
 
         self.params = params
         self.finder = {}

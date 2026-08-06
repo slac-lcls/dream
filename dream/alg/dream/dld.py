@@ -11,8 +11,8 @@ class dld_reconstructor:
         self.det_id = det_id
         self.sign_z = 1. if self.det_id == 's' else -1.
         config_dir = os.getenv("CONFIGDIR")
-        config_dir = config_dir + 'dream/'
-        self.params = read_config(config_dir + 'alg.yaml')[self.det_id]
+        config_dir_run = os.getenv("CONFIGDIR_RUN", config_dir + 'dream/')
+        self.params = read_config(config_dir_run + 'alg.yaml')[self.det_id]
 
         if rank==0:
             print('DET ID: ', self.det_id)
@@ -36,7 +36,7 @@ class dld_reconstructor:
         settings = [self.params['hr'][setting_name] for setting_name in setting_names]
         self.RHF = PyASort()
         s_corr, p_corr = 1, 1
-        _ = self.RHF.init_sorter(config_dir, self.det_id, 0, 1, s_corr, p_corr, *settings)
+        _ = self.RHF.init_sorter(config_dir_run, self.det_id, 0, 1, s_corr, p_corr, *settings)
     
 
         self.sig_offset_dict = {}

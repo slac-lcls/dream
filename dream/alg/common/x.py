@@ -170,8 +170,8 @@ class atm:
 
         config_dir = os.getenv("CONFIGDIR")
         instrument = read_config(config_dir+'instrument.yaml')['instrument']
-        config_dir = config_dir + instrument + '/'
-        params = read_config(config_dir + 'alg.yaml')[self.det_id]
+        config_dir_run = os.getenv("CONFIGDIR_RUN", config_dir + instrument + '/')
+        params = read_config(config_dir_run + 'alg.yaml')[self.det_id]
         self.params = params
         self.beta = self.params['beta']
         
@@ -264,8 +264,8 @@ class fzp:
 
         config_dir = os.getenv("CONFIGDIR")
         instrument = read_config(config_dir+'instrument.yaml')['instrument']
-        config_dir = config_dir + instrument + '/'
-        params = read_config(config_dir + 'alg.yaml')[self.det_id]
+        config_dir_run = os.getenv("CONFIGDIR_RUN", config_dir + instrument + '/')
+        params = read_config(config_dir_run + 'alg.yaml')[self.det_id]
         self.params = params
         self.hw_fzp = params['hw']
         self.requested_vars = requested_vars

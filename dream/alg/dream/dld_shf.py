@@ -10,8 +10,8 @@ class dld_reconstructor:
         self.det_id = det_id
         self.sign_z = 1. if self.det_id == 's' else -1.
         config_dir = os.getenv("CONFIGDIR")
-        config_dir = config_dir + 'dream/'
-        self.params = read_config(config_dir + 'alg.yaml')[self.det_id]
+        config_dir_run = os.getenv("CONFIGDIR_RUN", config_dir + 'dream/')
+        self.params = read_config(config_dir_run + 'alg.yaml')[self.det_id]
 
         if rank==0:
             print('DET ID: ', self.det_id)
