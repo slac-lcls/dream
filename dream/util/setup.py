@@ -183,16 +183,14 @@ def init(rank, mode, exp, run_num, config, callbacks):
                 os.remove(file)
                 print(f"Deleted {file}")
 
-        if config.get('live', False):
+        live = os.getenv("LIVE", "False").lower() == "true"
+        if live:
             os.environ['PS_SMD_MAX_RETRIES'] = str(config.get('wait_time', 60))
-        else:
-            config['live'] = False
-
         
         if config['max_events'] is not None:
-            ds = DataSource(exp=exp,run=run_num, live = config['live'], max_events=config['max_events'], monitor=False) 
+            ds = DataSource(exp=exp,run=run_num, live = live, max_events=config['max_events'], monitor=False) 
         else:
-            ds = DataSource(exp=exp,run=run_num, live = config['live'], monitor=False)             
+            ds = DataSource(exp=exp,run=run_num, live = live, monitor=False)             
         
         smd = ds.smalldata(filename=h5_path, batch_size=config['batch_size'])
 
