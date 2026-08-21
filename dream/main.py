@@ -26,7 +26,8 @@ else:
 config_dir = os.getenv("CONFIGDIR")
 instrument = read_config(config_dir+'instrument.yaml')['instrument']
 config_dir_run = os.getenv("CONFIGDIR_RUN", config_dir+instrument+'/')
-config = read_config(config_dir_run+'offline.yaml') 
+config_dir_res = os.getenv("CONFIGDIR_OFFLINE") or config_dir_run
+config = read_config(config_dir_res+mode+'.yaml') 
 config_det = read_config(config_dir_run+'det.yaml')      
 
 detectors, config, requested_vars_by_detector = check_detectors(config, config_det)
