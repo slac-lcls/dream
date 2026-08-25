@@ -59,8 +59,8 @@ pip install -e .
 ## Quick Start
 
 ```bash
-# Set config directory
-export CONFIGDIR=/path/to/dream/config/
+# Set up conda env
+source /sdf/group/lcls/ds/tools/conda_envs/dream/sh/setup.sh
 
 # Online mode (real time)
 dream (single core)
